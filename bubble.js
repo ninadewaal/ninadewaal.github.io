@@ -1,5 +1,4 @@
-var colours = getColours();
-var width = 500, height = 500;
+var width = 1000, height = 1000;
 
 var svg = d3.select('#chart')
     .append('svg')
@@ -7,13 +6,17 @@ var svg = d3.select('#chart')
     .attr('width', width)
     .append('g');
 
-var radiusScale = d3.scaleSqrt().domain([0, 100]).range([10, 50]);
+var defs = svg.append("defs");
+
+var radiusScale = d3.scaleSqrt().domain([0, 100]).range([30, 100]);
 
 // Collection of forces
 var xForce = d3.forceX(width / 2).strength(0.05);
 var yForce = d3.forceY(height / 2).strength(0.05);
 var manyBodyForce = d3.forceManyBody().strength(function (d) {
-    return -0.07 * Math.pow(radiusScale(d.data.value), 2);
+    const force = Math.floor(Math.random() * 50);
+    return -0.07 * Math.pow(radiusScale(force), 2);
+
 });
 
 // Define the force simulation and attach these forces
@@ -24,7 +27,7 @@ var simulation = d3.forceSimulation()
 
 
 d3.queue()
-    .defer(d3.json, 'data.json')
+    .defer(d3.json, 'images.json')
     .await(ready);
 
 function ready(err, root) {
@@ -44,6 +47,25 @@ function ready(err, root) {
     // Let the simulation call the tick function for every clock cycle
     simulation.nodes(nodes).on('tick', tick);
 
+    defs.selectAll(".image-pattern")
+        .data(nodes)
+        .enter().append("pattern")
+        .attr('class', 'image-pattern')
+        .attr("id", function(d) {
+            return d.data.name;
+        })
+        .attr('height', '100%')
+        .attr('width', '100%')
+        .attr('patternContentUnits', 'objectBoundingBox')
+        .append('image')
+        .attr('height', 1)
+        .attr('width', 1)
+        .attr('preserveAspectRatio', 'none')
+        .attr('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+        .attr('xlink:href', function(d) {
+            return d.data.path;
+        });
+
     // These nodes will be a grouper for the circles and text
     // Then we can apply transformation functions to the nodes and
     // it will be applied to both.
@@ -58,21 +80,12 @@ function ready(err, root) {
         .on('click', click);
 
     svgNodes.append('circle')
-        .attr('class', function (d) {
-            return d.parent.data.name
-        })
-        .attr('r', function (d) {
-            return radiusScale(d.data.value);
+        .attr('r', function () {
+            return radiusScale(Math.floor(Math.random()*50));
         })
         .style('fill', function (d) {
-            return colours[d.parent.data.name.toUpperCase()]
-        });
+            return 'url(#' + d.data.name +')';
 
-    svgNodes.append('text')
-        .attr('font-size', '12px')
-        .style('text-anchor', 'middle')
-        .text(function (d) {
-            return d.data.value;
         });
 
     /**
