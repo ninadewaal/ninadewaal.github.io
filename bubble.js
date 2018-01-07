@@ -1,4 +1,4 @@
-var width = 1000, height = 1000;
+var width = 500, height = 500;
 
 var svg = d3.select('#chart')
     .append('svg')
