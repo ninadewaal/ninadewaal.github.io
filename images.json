@@ -1,0 +1,37 @@
+{
+  "name": "data",
+  "children": [
+    {
+      "name": "1",
+      "path": "data/1.jpg"
+    },{
+      "name": "2",
+      "path": "data/2.jpg"
+    },{
+      "name": "5",
+      "path": "data/5.jpg"
+    },{
+      "name": "bc_1",
+      "path": "data/bc_1.jpg"
+    },{
+      "name": "bc_2",
+      "path": "data/bc_2.jpg"
+    },{
+      "name": "cowboykid",
+      "path": "data/cowboykid.jpg"
+    },{
+      "name": "dots",
+      "path": "data/dots.jpg"
+    },{
+      "name": "dots2",
+      "path": "data/dots2.jpg"
+    },{
+      "name": "milky-01",
+      "path": "data/milky-01.jpg"
+    },{
+      "name": "nou_braai",
+      "path": "data/nou_braai.jpg"
+    }
+  ]
+
+}
