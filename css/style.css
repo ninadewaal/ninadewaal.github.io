@@ -165,7 +165,7 @@ a:focus, img:focus, button:focus, .btn:focus {outline: none;}
 
 /*===== Header ===*/
 
-header[role="header"]{ padding-top:80px; padding-bottom:39px}
+header[role="header"]{ padding-top:80px; padding-bottom:15px}
 
 header[role="header"] h1{ padding:0; margin:0}
 
@@ -219,7 +219,7 @@ main[role="main-home-wrapper"],main[role="main-inner-wrapper"] { padding-bottom:
 
 main[role="main-home-wrapper"] article[role="pge-title-content"],main[role="main-inner-wrapper"] article[role="pge-title-content"]{ padding-left:41px}
 
-main[role="main-home-wrapper"] article[role="pge-title-content"] header,main[role="main-inner-wrapper"] article[role="pge-title-content"] header{ padding-bottom:19px; padding-top:83px}
+main[role="main-home-wrapper"] article[role="pge-title-content"] header,main[role="main-inner-wrapper"] article[role="pge-title-content"] header{ padding-bottom:19px; padding-top:20px}
 
 main[role="main-home-wrapper"] article[role="pge-title-content"] header h2,main[role="main-inner-wrapper"] article[role="pge-title-content"] header h2{ font-size:46px; line-height:53px; color:#404040; font-weight:800}
 

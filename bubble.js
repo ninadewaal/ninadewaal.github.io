@@ -2,10 +2,10 @@
 
 var svg = d3.select('#chart')
     .append('svg')
-    .attr('viewBox', "0 0 1000 1000")
+    .attr('viewBox', "0 0 500 500")
     //.attr('width', width)
     .append('g')
-    .attr("transform", 'translate(500,300)');
+    .attr("transform", 'translate(250,300)');
 
 
 
