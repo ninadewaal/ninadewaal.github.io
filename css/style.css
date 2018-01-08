@@ -2,21 +2,21 @@
 
 	Theme Name: avana LLC
 
-	Template URI: 
+	Template URI:
 
-	Description: 
+	Description:
 
 	Author:
 
-	Author URI: 
+	Author URI:
 
-	License: 
+	License:
 
 	License URI:
 
 	Version: 1.0
 
-	
+
 
 	1. Body style
 
@@ -28,7 +28,7 @@
 
 	5. About
 
-	
+
 
 */
 
@@ -231,7 +231,7 @@ main[role="main-home-wrapper"] article[role="pge-title-content"] p,main[role="ma
 
 footer[role="footer"]{ background-color:#FFF; padding-top:100px; padding-bottom:77px}
 
-footer[role="footer"] > h1 a{ margin:0 auto; display:block; max-width:66px;}
+footer[role="footer"] > h1 a{ margin:auto; display:block; width: 25%; margin-left: auto; margin-right: auto }
 
 footer[role="footer"] nav{ padding-top:37px; padding-bottom:43px}
 

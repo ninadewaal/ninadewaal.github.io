@@ -1,10 +1,14 @@
-var width = 500, height = 500;
+ var width = 1, height = 1;
 
 var svg = d3.select('#chart')
     .append('svg')
-    .attr('height', height)
-    .attr('width', width)
-    .append('g');
+    .attr('viewBox', "0 0 1000 1000")
+    //.attr('width', width)
+    .append('g')
+    .attr("transform", 'translate(500,300)');
+
+
+
 
 var defs = svg.append("defs");
 
