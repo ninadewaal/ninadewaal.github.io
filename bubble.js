@@ -1,22 +1,13 @@
- var width = 2, height = 2;
+ var width = 1, height = 1;
  var border=1;
 var bordercolor='black';
 
 var svg = d3.select('#chart')
     .append('svg')
-    .attr('viewBox', "0 0 800 500")
+    .attr('viewBox', "0 0 800 800")
     //.attr('width', width)
     .append('g')
-    .attr("transform", 'translate(400,300)');
-
-var borderPath = svg.append("rect")
-                .attr("x", -400)
-                .attr("y", -300)
-                .attr("height", 500)
-                .attr("width", 800)
-                .style("stroke", bordercolor)
-                .style("fill", "none")
-                .style("stroke-width", border);
+    .attr("transform", 'translate(400, 400)');
 
 
 var defs = svg.append("defs");
@@ -24,11 +15,11 @@ var defs = svg.append("defs");
 var radiusScale = d3.scaleSqrt().domain([0, 100]).range([30, 100]);
 
 // Collection of forces
-var xForce = d3.forceX(width / 2).strength(0.05);
-var yForce = d3.forceY(height / 2).strength(0.05);
+var xForce = d3.forceX(width / 2).strength(0.25);
+var yForce = d3.forceY(height / 2).strength(0.25);
 var manyBodyForce = d3.forceManyBody().strength(function (d) {
-    const force = Math.floor(Math.random() * 5);
-    return -0.07 * Math.pow(radiusScale(force), 2);
+    const force = Math.floor(Math.random() * 15);
+    return -0.17 * Math.pow(radiusScale(force), 2.1);
 
 });
 
@@ -94,7 +85,7 @@ function ready(err, root) {
 
     svgNodes.append('circle')
         .attr('r', function () {
-            return radiusScale(Math.floor(Math.random()*15));
+            return radiusScale(Math.floor(Math.random()*10));
         })
         .style('fill', function (d) {
             return 'url(#' + d.data.name +')';
@@ -105,24 +96,8 @@ function ready(err, root) {
      * Function that gets called on each time tick.
      */
     function tick() {
-        var u = d3.select('svg')
-        .selectAll('circle')
-        .data(nodes)
-
-      u.enter()
-        .append('circle')
-        .attr('r', function(d) {
-          return d.radius
-        })
-        .merge(u)
-        .attr('cx', function(d) {
-          return d.x
-        })
-        .attr('cy', function(d) {
-          return d.y
-        })
-
-      u.exit().remove()
+       
+       
 
         svgNodes.attr("transform", function (d) {
             return "translate(" + d.x + "," + d.y + ")";
@@ -135,9 +110,6 @@ function ready(err, root) {
      */
     function clickCheck(d) {
         // First check if any other bubble were expanded
-        var expandedNode = nodes.find(function (node) {
-            return node.data['activated'] === true;
-        });
 
         if (expandedNode) {
             // Decrease the size of the expanded circle
@@ -146,46 +118,59 @@ function ready(err, root) {
                 .transition()
                 .duration(300)
                 .attr('r', function (d) {
-                    return radiusScale(d.data['old_value']);
+                    return radiusScale(Math.floor(Math.random()*10));
                 });
             //  Update its value in the node
             expandedNode.data.value = expandedNode.data['old_value'];
-            expandedNode.data['activated'] = false;
+           return expandedNode.data['activated'] = false;
+             
         }
+        else{
+             var expandedNode = nodes.find(function (node) {
+            
+            return node.data['activated'] === true;
+             
+        });
+
+        }
+       
     }
 
     function click(d) {
 
         clickCheck(d);
+        //console.log(d.data['old_value']);
+        //console.debug(d.data['activated']);
+        //console.debug(d.data['activated']);
 
         if (d.data['activated']) {
+            
             d3.select(this)
                 .select('circle')
                 .transition()
                 .duration(300)
                 .attr('r', function (d) {
-                    return radiusScale(d.data['old_value']);
+                    return radiusScale(Math.floor(Math.random()*10));
                 });
+                 d.data['activated'] = false;
+
         } else {
             // The maximum value that any circle will have (not radius)
             // this translates to a radius of 80
             // TODO: Refactor this to be varants elsewhere
-            var v = 200;
-
+            
             // Save the old value for setting back to original size
             d.data['activated'] = true;
-            d.data['old_value'] = d.data.value;
-
+            
             // Set this node to have max size
-            d.data.value = v;
-
+            
             // Enlarge this circle
             d3.select(this)
                 .select('circle')
                 .transition()
                 .duration(500)
                 .attr('r', function (d) {
-                    return radiusScale(d.data.value);
+                    return radiusScale(600);
                 });
         }
 
@@ -195,36 +180,11 @@ function ready(err, root) {
         // TODO: Figure out why after expansion some bubbles are overlapping.
         // Restart the simulation
         simulation.alphaTarget(1).restart();
+
     }
 }
 
-    function collide(node) {
-      var r = node.radius + 2,
-          nx1 = node.x - r,
-          nx2 = node.x + r,
-          ny1 = node.y - r,
-          ny2 = node.y + r;
-      return function(quad, x1, y1, x2, y2) {
-        if (quad.point && (quad.point !== node)) {
-          var x = node.x - quad.point.x,
-              y = node.y - quad.point.y,
-              l = Math.sqrt(x * x + y * y),
-              r = node.radius + quad.point.radius;
-          if (l < r) {
-            l = (l - r) / l * .5;
-            node.x -= x *= l;
-            node.y -= y *= l;
-            quad.point.x += x;
-            quad.point.y += y;
-          }
-        }
-        return x1 > nx2
-            || x2 < nx1
-            || y1 > ny2
-            || y2 < ny1;
-      };
-  }
-
+    
 
 function getColours() {
     return {
