@@ -1,4 +1,4 @@
-var width = 1, height = 1;
+var width = 2, height = 0.2;
 var border = 1;
 var bordercolor = 'black';
 
@@ -7,10 +7,10 @@ const maxSize = 400;
 
 var svg = d3.select('#chart')
     .append('svg')
-    .attr('viewBox', "0 0 800 800")
+    .attr('viewBox', "0 0 1000 600")
     //.attr('width', width)
     .append('g')
-    .attr("transform", 'translate(400, 400)');
+    .attr("transform", 'translate(500, 300)');
 
 
 var defs = svg.append("defs");
