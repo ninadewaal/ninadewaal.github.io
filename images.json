@@ -2,35 +2,45 @@
   "name": "data",
   "children": [
     {
-      "name": "1",
-      "path": "data/1.jpg"
+      "name": "one",
+      "path": "data/1.jpg",
+      "size": 10
     },{
-      "name": "2",
-      "path": "data/2.jpg"
+      "name": "two",
+      "path": "data/2.jpg",
+      "size": 15
     },{
-      "name": "5",
-      "path": "data/5.jpg"
+      "name": "three",
+      "path": "data/5.jpg",
+      "size": 55
     },{
       "name": "bc_1",
-      "path": "data/bc_1.jpg"
+      "path": "data/bc_1.jpg",
+      "size": 23
     },{
       "name": "bc_2",
-      "path": "data/bc_2.jpg"
+      "path": "data/bc_2.jpg",
+      "size": 13
     },{
       "name": "cowboykid",
-      "path": "data/cowboykid.jpg"
+      "path": "data/cowboykid.jpg",
+      "size": 45
     },{
       "name": "dots",
-      "path": "data/dots.jpg"
+      "path": "data/dots.jpg",
+      "size": 32
     },{
       "name": "dots2",
-      "path": "data/dots2.jpg"
+      "path": "data/dots2.jpg",
+      "size": 29
     },{
       "name": "milky-01",
-      "path": "data/milky-01.jpg"
+      "path": "data/milky-01.jpg",
+      "size": 10
     },{
       "name": "nou_braai",
-      "path": "data/nou_braai.jpg"
+      "path": "data/nou_braai.jpg",
+      "size": 14
     }
   ]
 
